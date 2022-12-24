@@ -24,7 +24,7 @@ use serenity::{
 
 // modules
 mod commands;
-use commands::{ping::*}; //TODO create the module files and implement the functions
+use commands::{ping::*, embed::*}; //TODO create the module files and implement the functions
 
 struct Handler;
 #[async_trait]
@@ -155,6 +155,7 @@ async fn main() {
         .normal_message(normal_message)
         .on_dispatch_error(dispatch_error)
         .help(&CATMINITY_HELP)
+        .group(&EMBED_GROUP)
         .group(&GENERAL_GROUP)
         .group(&OWNER_GROUP);
 
