@@ -23,6 +23,8 @@
 - `thumbnail`: 공지에 작게 들어갈 섬네일의 URL
 - `url`: 공지 제목을 클릭하면 연결될 URL; 반드시 `title` 값을 함께 사용.
 
+`title`, `description`, `footer`, `fields`, `image`, `thumbnail` 중 적어도 하나는 포함되어 있어야 임베드가 생성됩니다.
+
 ```
 @CAT-munity 공지 {
 	"bind": 773547082115055666,
