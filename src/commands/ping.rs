@@ -1,9 +1,12 @@
+//! Simple ping-pong example.
+
 use serenity::{
     framework::standard::{macros::command, CommandResult},
     model::channel::Message,
     prelude::*,
 };
 
+/// Just ping-pong.
 #[command]
 #[description = "핑퐁이 아니고 핑뇽"]
 pub async fn ping(ctx: &Context, msg: &Message) -> CommandResult {

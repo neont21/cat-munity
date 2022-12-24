@@ -1,6 +1,6 @@
-/// # CAT-munity
-/// 디스코드 기반의 개발자 커뮤니티에서 사용할 디스코드 봇입니다. 
-/// 이름이 왜 캣뮤니티냐고요? 그야 당연히 고양이는 고양이기 때문입니다.
+//! # CAT-munity
+//! 디스코드 기반의 개발자 커뮤니티에서 사용할 디스코드 봇입니다. 
+//! 이름이 왜 캣뮤니티냐고요? 그야 당연히 고양이는 고양이기 때문입니다.
 
 // use for Environment Variable
 use std::{collections::HashSet, env};
@@ -36,11 +36,12 @@ impl EventHandler for Handler {
     }
 }
 
-//TODO use groups
+/// General user group.
 #[group]
 #[commands(ping)]
 struct General;
 
+/// Owner group.
 #[group]
 #[owners_only]
 #[only_in(guilds)]
@@ -67,7 +68,7 @@ async fn catminity_help(
     Ok(())
 }
 
-/// Called whenever before responding the command
+/// Called whenever before responding the command.
 #[hook]
 async fn before(_ctx: &Context, msg: &Message, command_name: &str) -> bool {
     println!(
@@ -79,7 +80,7 @@ async fn before(_ctx: &Context, msg: &Message, command_name: &str) -> bool {
     true
 }
 
-/// Called whenever after responding the command
+/// Called whenever after responding the command.
 #[hook]
 async fn after(_ctx: &Context, _msg: &Message, command_name: &str, command_result: CommandResult) {
     match command_result {
@@ -88,19 +89,19 @@ async fn after(_ctx: &Context, _msg: &Message, command_name: &str, command_resul
     }
 }
 
-/// Called whenever the unknown command sent
+/// Called whenever the unknown command sent.
 #[hook]
 async fn unknown_command(_ctx: &Context, _msg: &Message, unknown_command_name: &str) {
     println!("명령어 '{}' 찾을 수 없다요!!", unknown_command_name);
 }
 
-/// Called whenever the normal message sent
+/// Called whenever the normal message sent.
 #[hook]
 async fn normal_message(_ctx: &Context, msg: &Message) {
     println!("명령어가 아닌 메시지 '{}' 받았다요!!", msg.content);
 }
 
-/// Called whenever the response of the message failed
+/// Called whenever the response of the message failed.
 #[hook]
 async fn dispatch_error(ctx: &Context, msg: &Message, error: DispatchError, cmd: &str) {
     if let DispatchError::Ratelimited(duration) = error {
